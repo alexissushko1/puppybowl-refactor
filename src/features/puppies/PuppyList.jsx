@@ -3,8 +3,11 @@
  * Shows a list of puppies in the roster.
  * Users can select a puppy to see more information about it.
  */
+
+import { useGetPuppiesQuery } from "./puppySlice";
 export default function PuppyList({ setSelectedPuppyId }) {
   // TODO: Get data from getPuppies query
+  const { data: puppies = [], error, isLoading } = useGetPuppiesQuery();
 
   return (
     <article>
