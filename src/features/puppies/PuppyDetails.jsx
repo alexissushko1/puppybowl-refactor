@@ -4,16 +4,19 @@
  * Also provides a button for users to remove the selected puppy from the roster.
  */
 import { useState } from "react";
-import { useGetPuppyQuery } from "./puppySlice";
+import { useDeletePuppyMutation, useGetPuppyQuery } from "./puppySlice";
 export default function PuppyDetails({ selectedPuppyId, setSelectedPuppyId }) {
   // TODO: Grab data from the `getPuppy` query
 
   // TODO: Use the `deletePuppy` mutation to remove a puppy when the button is clicked
-  /*const [puppyId, setPuppyId] = useState("");
-  const { data: puppy } = useGetPuppiesQuery(puppyId);*/
+  /*const [puppyId, setPuppyId] = useState("");*/
+  const { data: puppy, isLoading } = useGetPuppyQuery(selectedPuppyId);
+
+  const [deletePuppy] = useDeletePuppyMutation();
 
   function removePuppy(id) {
-    setSelectedPuppyId(deletePuppy);
+    setSelectedPuppyId();
+    deletePuppy(id);
   }
 
   // There are 3 possibilities:
